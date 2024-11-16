@@ -7,27 +7,27 @@ public:
     // two pointer method should return the answer here.
     int maxArea(vector<int>& height) {
         int ans = 0;
-        int left = height[0], right = height[height.size()-1];
         int l = 0, h = height.size() -1;
+
         while(l < h) {
-            int area = calculateArea(left, right, l, h);
+            int area = min(height[l], height[h]) * (h - l);
             ans = max(area, ans);
 
-            if(left < right) {
+            if(height[l] < height[h]) {
                 l++;
-                left = height[l];
             }
 
-            else {
+            else if(height[h] < height[l]) {
                 h--;
-                right = height[h];
+            }
+
+            // if both points are equal change the both index
+            else {
+                l++;
+                h--;
             }
         }
 
         return ans;
-    }
-
-    int calculateArea(int start, int end, int idxStart, int idxEnd) {
-        return min(start, end) * (idxEnd - idxStart);
     }
 };
