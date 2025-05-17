@@ -10,7 +10,7 @@ class Solution:
 
         def dfs(node: Optional['Node']) -> Optional['Node']:
             if node in oldToNew:
-                return oldToNew[node]
+                return node
 
             copy = Node(node.val)
             oldToNew[node] = copy
